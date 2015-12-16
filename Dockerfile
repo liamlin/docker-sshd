@@ -1,6 +1,6 @@
 # sshd
 #
-# VERSION               0.0.2
+# VERSION               0.0.3
 
 FROM ubuntu:14.04
 MAINTAINER Sven Dowideit <SvenDowideit@docker.com>
@@ -15,6 +15,7 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
+RUN echo "GatewayPorts yes" >> /etc/ssh/sshd_config
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
